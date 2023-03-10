@@ -6,7 +6,7 @@ const validateToken = (req, res, next) => {
     if (!authorization) return res.status(401).json({ message: 'Token not found' });
 
     const payload = verifyToken(authorization);
-    req.data = payload.data;
+    req.data = payload.data; // req transita por todas as rotas
     console.log(req.data);
 
     next();

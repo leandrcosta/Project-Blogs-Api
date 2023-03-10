@@ -11,13 +11,16 @@ const validateField = async (req, res, next) => {
   console.log(req.body);
 
   if (displayName.length < 8) {
-    res.status(400).json({ message: '"displayName" length must be at least 8 characters long' });
+   return res
+   .status(400).json({ message: '"displayName" length must be at least 8 characters long' });
   }
   if (!validatingEmail(email)) {
-    res.status(400).json({ message: '"email" must be a valid email' });
+    return res
+    .status(400).json({ message: '"email" must be a valid email' });
   }
   if (password.length < 6) {
-    res.status(400).json({ message: '"password" length must be at least 6 characters long' });
+    return res
+    .status(400).json({ message: '"password" length must be at least 6 characters long' });
   }
   // verifica se email ja estava cadastrado
   const userExist = await loginService.getUser(email);
