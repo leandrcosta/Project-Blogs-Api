@@ -1,8 +1,11 @@
-/* const express = require('express');
+const express = require('express');
 const { userController } = require('../controllers');
+const { validateField } = require('../middleware/fieldValidationUserCreation');
+const { validateToken } = require('../middleware/validationToken');
 
 const userRouter = express.Router();
 
-userRouter.get('/', userController.getUsers);
+userRouter.post('/', validateField, userController.createUser);
+userRouter.get('/', validateToken, userController.getAllUsers);
 
-module.exports = userRouter; */
+module.exports = userRouter;

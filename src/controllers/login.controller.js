@@ -9,7 +9,7 @@ const loginUser = async (req, res) => {
   if (!isBodyRequestValid({ email, password })) { // validação dos campos
     return res.status(400).json({ message: 'Some required fields are missing' });
   }
-  const user = await loginService.getUser(email, password);
+  const user = await loginService.getUser(email);
 
   if (!user || user.password !== password) { // verificando se dados existem no banco
     return res.status(400).json({ message: 'Invalid fields' });
