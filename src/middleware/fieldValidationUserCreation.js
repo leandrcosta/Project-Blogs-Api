@@ -24,7 +24,7 @@ const validateField = async (req, res, next) => {
   }
   // verifica se email ja estava cadastrado
   const userExist = await loginService.getUser(email);
-  if (userExist) res.status(409).json({ message: 'User already registered' });
+  if (userExist) return res.status(409).json({ message: 'User already registered' });
 
   next();
 };
