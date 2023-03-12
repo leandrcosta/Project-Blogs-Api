@@ -5,7 +5,7 @@ const validatingEmail = (email) => {
   const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   return emailRegex.test(email);
 };
-
+// Coloquei return em todos os it's poiis não estava seguindo com o fluxo de resposta
 const validateField = async (req, res, next) => {
   const { displayName, email, password } = req.body;
   console.log(req.body);
