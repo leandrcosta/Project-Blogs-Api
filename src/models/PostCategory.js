@@ -20,22 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "blog_posts", // nome da migration
+      tableName: "posts_categories", // nome da migration
       underscored: true,
       timestamps: false,
     }
-  );
+  ); // Estudar mais sobre associações/ Tive problemas com os nomes e alias
   PostCategoryModel.associate = (models) => {
-    models.Category.belongsToMany(models.BlogPost, {
-      as: "blogposts",
-      through: PostCategoryModel,
+    models.BlogPost.belongsToMany(models.Category, {
+      as: "categories", // apelido pra Model.Category
+      through: PostCategoryModel, //nome da model que junta as duas tabelas
       foreignKey: "categoryId", // a coluna representada na tabela PostCategory
       otherKey: "postId", // a outra coluna representada na mesma tebale
     });
 
-    models.BlogPost.belongsToMany(models.Category, {
-      as: "categories", // apelido pra Model.Category
-      through: PostCategoryModel, //nome da model que junta as duas tabelas
+    models.Category.belongsToMany(models.BlogPost, {
+      as: "blogpost",
+      through: PostCategoryModel,
       foreignKey: "postId", // a coluna representada na tabela PostCategory
       otherKey: "categoryId", // a outra coluna representada na mesma tebale
     });

@@ -25,5 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+  CategoryModel.associate = (models) => {// Estava esquecendo de fazer associação e dava erro
+    CategoryModel.hasMany(models.PostCategory,{
+      foreignKey:'categoryId',
+      as: 'postCategory',
+    })
+  };
   return CategoryModel;
 };
